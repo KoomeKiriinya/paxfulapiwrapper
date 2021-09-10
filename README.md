@@ -1,6 +1,6 @@
 
 # Paxful API wrapper: WIP 
-### NB this library/wrapper has not been published and can only list your paxful transactions
+### NB this library/wrapper has not been published and can only list your paxful transactions and view currency info
 
 ```markdown
 
@@ -42,7 +42,7 @@ func main() {
 	fmt.Println(currencies_list)
 
 	//values of BTC and USD per country 
-	
+
 	currency_rates, err := pax_client.CurrencyRates()
 	if err != nil {
 		fmt.Println("error :" + err.Error())
