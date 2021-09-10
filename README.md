@@ -1,5 +1,7 @@
 
 # Paxful API wrapper: WIP 
+
+What is paxful ? [see here](https://paxful.com/support/en-us/articles/360008914373-What-is-Paxful-)
 ### NB this library/wrapper has not been published and can only list your paxful transactions and view currency info
 
 ```markdown
