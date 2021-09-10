@@ -2,7 +2,6 @@
 # Paxful API wrapper: WIP 
 ### NB this library/wrapper has not been published and can only list your paxful transactions
 
----
 ```markdown
 
 To use this wrapper copy the paxful folder to your project and import it 
@@ -14,8 +13,7 @@ with your go module.
 Also add variables in env.example to your envs.
 
 ```
----
----
+
 ```markdown
 
 package main
@@ -37,4 +35,3 @@ func main() {
 
 }
 ```
----
