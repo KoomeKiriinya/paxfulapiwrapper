@@ -40,6 +40,35 @@ func (c *Client) Auth() (string, error) {
 	return res_body["access_token"].(string), nil
 }
 
+// Currency
+
+func (c *Client) CurrencyRates() (map[string]interface{}, error) {
+	req_url := c.BaseURL + "/currency/rates"
+	token, err := c.Auth()
+	if err != nil {
+		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
+	}
+	response, err := post(req_url, token, "")
+	if err != nil {
+		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
+	}
+	return response, nil
+}
+
+func (c *Client) CurrencyList() (map[string]interface{}, error) {
+	req_url := c.BaseURL + "/currency/list"
+	token, err := c.Auth()
+	if err != nil {
+		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
+	}
+	response, err := post(req_url, token, "")
+	if err != nil {
+		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
+	}
+	return response, nil
+}
+
+// list all transactions
 func (c *Client) Transactions(page, limit, trans_type, code string) (map[string]interface{}, error) {
 	req_details := Transactions{
 		Page:                 page,
