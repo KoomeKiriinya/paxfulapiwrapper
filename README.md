@@ -5,9 +5,13 @@
 ---
 ```markdown
 
-To use this wrapper copy the paxful folder to your project and import it into your main or desired package and replace **github.com/paxfulapiwrapper** with your go module. 
+To use this wrapper copy the paxful folder to your project and import it 
 
-Also add variables in **.env.example** to your envs.
+into your main or desired package and replace github.com/paxfulapiwrapper
+
+with your go module. 
+
+Also add variables in env.example to your envs.
 
 ```
 ---
