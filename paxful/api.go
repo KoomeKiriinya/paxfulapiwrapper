@@ -94,6 +94,29 @@ func (c *Client) Transactions(page, limit, trans_type, code string) (map[string]
 	return response, nil
 }
 
+// Convert Crypto
+
+func (c *Client) Conversion(order_id,quote_id,convert_from,convert_to,amount string)(map[string]interface{}, error){
+	req_details := Conversion{
+		Order_id: order_id,
+		Quote_id: quote_id,
+		Convert_from: convert_from,
+		Convert_to: convert_to,
+		Amount: amount,
+	}
+	req_body := "order_id=" + req_details.Order_id + "&quote_id=" + req_details.Quote_id + "&convert_from=" + req_details.Convert_from + "&convert_to=" + req_details.Convert_to + "&amount=" + req_details.Amount
+	req_url := c.BaseURL + "/wallet/conversion-quotes"
+	token, err := c.Auth()
+	if err != nil {
+		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
+	}
+	response, err := post(req_url, token, req_body)
+	if err != nil {
+		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
+	}
+	return response, nil
+}
+
 func post(apiurl string, apitoken string, body string) (map[string]interface{}, error) {
 	payload := strings.NewReader(body)
 	client := &http.Client{}
