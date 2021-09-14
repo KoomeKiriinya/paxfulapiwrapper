@@ -1,12 +1,17 @@
 package paxful
 
 import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
+	"time"
 )
 
 const (
@@ -128,7 +133,7 @@ func get(apiurl string, apitoken string) (map[string]interface{}, error) {
 	}
 
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Add("Authorization", apitoken)
+	req.Header.Add("Authorization", "Bearer "+apitoken)
 	res, err := client.Do(req)
 	if err != nil {
 		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
@@ -143,5 +148,25 @@ func get(apiurl string, apitoken string) (map[string]interface{}, error) {
 	var response map[string]interface{}
 	json.Unmarshal([]byte(res_body), &response)
 	return response, nil
+
+}
+
+func InitiatePaxfulPayment(amount, track_id string) string {
+	payment_details := InitiatePayment{
+		Merchant:  os.Getenv("MERCHANT_ID"),
+		Apikey:    os.Getenv("API_KEY"),
+		Apisecret: os.Getenv("API_SECRET"),
+		Nonce:     fmt.Sprint(time.Now().Unix()),
+		To:        os.Getenv("BITCOIN_ADDRESS"),
+		Amount:    amount,
+		Track_id:  track_id,
+	}
+
+	payments_api_seal_body := "merchant=" + payment_details.Merchant + "&apikey=" + payment_details.Apikey + "&nonce=" + payment_details.Nonce + "&to=" + payment_details.To + "&track_id=" + payment_details.Track_id + "&amount=" + payment_details.Amount
+	h := hmac.New(sha256.New, []byte(payment_details.Apisecret))
+	h.Write([]byte(payments_api_seal_body))
+	api_seal := hex.EncodeToString(h.Sum(nil))
+	payment_link := "https://paxful.com/wallet/pay?" + payments_api_seal_body + "&apiseal=" + api_seal
+	return payment_link
 
 }
