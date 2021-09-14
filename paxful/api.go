@@ -95,17 +95,33 @@ func (c *Client) Transactions(page, limit, trans_type, code string) (map[string]
 }
 
 // Convert Crypto
-
-func (c *Client) Conversion(order_id,quote_id,convert_from,convert_to,amount string)(map[string]interface{}, error){
-	req_details := Conversion{
-		Order_id: order_id,
-		Quote_id: quote_id,
+func (c *Client) ConversionQuotes(convert_from, convert_to string) (map[string]interface{}, error) {
+	req_details := ConversionQuotes{
 		Convert_from: convert_from,
-		Convert_to: convert_to,
-		Amount: amount,
+		Convert_to:   convert_to,
+	}
+	req_body := "convert_from=" + req_details.Convert_from + "&convert_to=" + req_details.Convert_to
+	req_url := c.BaseURL + "/wallet/conversion-quotes"
+	token, err := c.Auth()
+	if err != nil {
+		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
+	}
+	response, err := post(req_url, token, req_body)
+	if err != nil {
+		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
+	}
+	return response, nil
+}
+func (c *Client) Convert(order_id, quote_id, convert_from, convert_to, amount string) (map[string]interface{}, error) {
+	req_details := Conversion{
+		Order_id:     order_id,
+		Quote_id:     quote_id,
+		Convert_from: convert_from,
+		Convert_to:   convert_to,
+		Amount:       amount,
 	}
 	req_body := "order_id=" + req_details.Order_id + "&quote_id=" + req_details.Quote_id + "&convert_from=" + req_details.Convert_from + "&convert_to=" + req_details.Convert_to + "&amount=" + req_details.Amount
-	req_url := c.BaseURL + "/wallet/conversion-quotes"
+	req_url := c.BaseURL + "/wallet/converst"
 	token, err := c.Auth()
 	if err != nil {
 		return map[string]interface{}{}, errors.New("error occured : " + err.Error())

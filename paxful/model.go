@@ -31,3 +31,8 @@ type Conversion struct{
 	Convert_to string
 	Amount string
 }
+
+type ConversionQuotes struct{
+	Convert_from string
+	Convert_to string
+}
