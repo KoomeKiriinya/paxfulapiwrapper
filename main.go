@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
-
 	"github.com/paxfulapiwrapper/paxful"
 )
 
