@@ -8,21 +8,15 @@ import (
 )
 
 func main() {
-
+	// Initiate a client
 	pax_client := paxful.NewClient()
+
+	// list transactions 
 	transactions, err := pax_client.Transactions("1", "10", "all", "USDT")
 	if err != nil {
 		fmt.Println("error :" + err.Error())
 	}
-	transactions_value := transactions["data"].(map[string]interface{})["transactions"]
-
-	for k, v := range transactions_value.([]interface{}) {
-		fmt.Println(v.(map[string]interface{})["amount_fiat"])
-		fmt.Println(k)
-
-	}
-	fmt.Println(transactions_value.([]interface{})[0])
-	fmt.Println(time.Now().Unix())
+	fmt.Println(transactions)
 	// values of currencies per country ie. USDT to KES BTC to KES etc
 	currencies_list, err := pax_client.CurrencyList()
 	if err != nil {
