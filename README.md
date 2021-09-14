@@ -51,6 +51,11 @@ func main() {
 		fmt.Println("error :" + err.Error())
 	}
 	fmt.Println(currency_rates)
+	
+	// Initiate a BTC payment link
+	
+	payment_link := paxful.InitiatePaxfulPayment("0.000225", "xx12")
+	fmt.Println(payment_link)
 
 }
 ```

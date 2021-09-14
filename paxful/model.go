@@ -12,3 +12,14 @@ type Transactions struct{
 	Type string
 	Crypto_currency_code string
 }
+
+type InitiatePayment struct{
+	Merchant string
+	Apikey string 
+	Apiseal string
+	Nonce string
+	Apisecret string
+	To string
+	Amount string
+	Track_id string
+}
