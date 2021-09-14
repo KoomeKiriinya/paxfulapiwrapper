@@ -121,7 +121,7 @@ func (c *Client) Convert(order_id, quote_id, convert_from, convert_to, amount st
 		Amount:       amount,
 	}
 	req_body := "order_id=" + req_details.Order_id + "&quote_id=" + req_details.Quote_id + "&convert_from=" + req_details.Convert_from + "&convert_to=" + req_details.Convert_to + "&amount=" + req_details.Amount
-	req_url := c.BaseURL + "/wallet/converst"
+	req_url := c.BaseURL + "/wallet/convert"
 	token, err := c.Auth()
 	if err != nil {
 		return map[string]interface{}{}, errors.New("error occured : " + err.Error())
