@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/paxfulapiwrapper/paxful"
 )
 
@@ -9,7 +10,7 @@ func main() {
 	// Initiate a client
 	pax_client := paxful.NewClient()
 
-	// list transactions 
+	// list transactions
 	transactions, err := pax_client.Transactions("1", "10", "all", "USDT")
 	if err != nil {
 		fmt.Println("error :" + err.Error())
@@ -30,4 +31,14 @@ func main() {
 	// Initiate a BTC payment link
 	payment_link := paxful.InitiatePaxfulPayment("0.000225", "xx12")
 	fmt.Println(payment_link)
+
+	// Get the conversion quotes
+	conversion_quotes, err := pax_client.ConversionQuotes("BTC", "USDT")
+
+	if err != nil {
+		fmt.Println("error :" + err.Error())
+	}
+
+	fmt.Println(conversion_quotes)
+
 }
