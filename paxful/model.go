@@ -23,3 +23,16 @@ type InitiatePayment struct{
 	Amount string
 	Track_id string
 }
+
+type Conversion struct{
+	Order_id string
+	Quote_id string
+	Convert_from string
+	Convert_to string
+	Amount string
+}
+
+type ConversionQuotes struct{
+	Convert_from string
+	Convert_to string
+}
