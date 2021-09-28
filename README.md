@@ -5,11 +5,10 @@ What is paxful ? [see here](https://paxful.com/support/en-us/articles/3600089143
 Paxful postman collection can be found [here](https://app.getpostman.com/run-collection/15197992-d216bdc0-6116-488b-a860-14a29d0cbf4f)
 ### NB: this library/wrapper has not been published and can only list your paxful transactions and view currency info
 
-```markdown
+
 
 To use this wrapper ```go get github.com/KoomeKiriinya/paxfulapiwrapper```
 
-```
 
 ```markdown
 
