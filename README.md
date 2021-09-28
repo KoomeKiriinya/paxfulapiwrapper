@@ -7,13 +7,7 @@ Paxful postman collection can be found [here](https://app.getpostman.com/run-col
 
 ```markdown
 
-To use this wrapper copy the paxful folder to your project and import it 
-
-into your main or desired package and replace github.com/paxfulapiwrapper
-
-with your go module. 
-
-Also add variables in env.example to your envs.
+To use this wrapper ```go get github.com/KoomeKiriinya/paxfulapiwrapper```
 
 ```
 

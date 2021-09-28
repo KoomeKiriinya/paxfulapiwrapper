@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/paxfulapiwrapper/paxful"
+	"github.com/KoomeKiriinya/paxfulapiwrapper/paxful"
 )
 
 func main() {
